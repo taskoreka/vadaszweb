@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Terület foglalás</title>
+</head>
+<body>
+    <h1>Terület foglalás</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Keresés</button>
+        <a href="{% url 'foglalas' %}" class="button">Foglalás</a>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Időpont</th>
+                <th>Részletek</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if elerheto_idopontok %}
+                {% for idopont in elerheto_idopontok %}
+                    <tr>
+                        <td>{{ idopont.kezdesi_ido }} - {{ idopont.befejezesi_ido }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="2">Nincs elérhető időpont a kiválasztott területen és napon.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

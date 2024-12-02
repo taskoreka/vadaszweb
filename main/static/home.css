@@ -1,0 +1,43 @@
+body{
+    background-image: url("hattermalac.jpg");
+    background-color: rgb(255,255,255, 0.6);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+h1{
+    text-align: center;
+    color: #421a06;
+    font-size: 120 px ;
+    font-family: "Brush Script MT", Brush Script Std, cursive;
+    opacity: 1;
+}
+
+h2{
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #f9d88a;
+    border-radius: 5px;
+    background-color: rgba(252, 238, 211, 0.88);
+}
+
+.gomb{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d9b38c;
+    color: #421a06;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.gomb:hover {
+    background-color: #cc9966;
+}
+
+.space {
+    margin-top: 20px; 
+}

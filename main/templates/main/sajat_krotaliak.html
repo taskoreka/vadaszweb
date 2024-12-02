@@ -1,0 +1,22 @@
+{% load static %}
+{% block content %}
+<head>
+    <title>{% block title %}Főoldal{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'foglalas.css' %}">
+    </head>
+    <div class="container mt-4">
+        <h2>Birtokolt, még nem felhasznált nagyvadazonosítóid</h2>
+        {% if krotaliak %}
+            <ul class="list-group">
+                {% for krotalia in krotaliak %}
+                    <li class="list-group-item">
+                        {{ krotalia.nagyvadazonosito }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nincsenek felhasználható krotáliáid.</p>
+        {% endif %}
+    </div>
+{%endblock%}

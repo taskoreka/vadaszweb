@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+        <title>{% block title %}Online beírókönyv{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+        </head>
+        </body>
+    <header>
+    <h1>Online beírókönyv</h1>
+    </header>
+    <h2>
+    <a href="{% url 'register'%}" class="gomb">Regisztrálok</a>
+    <a href="{% url 'mylogin'%}" class="gomb space">Bejelentkezés</a>
+    </h2>
+
+</div>
+    
+
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foglalások listája</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Foglalások listája</h1>
+
+    <!-- Szűrő űrlap -->
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label for="teljes_nev" class="form-label">Név:</label>
+            <input type="text" name="teljes_nev" id="teljes_nev" value="{{ teljes_nev }}" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label for="vadaszterulet" class="form-label">Terület:</label>
+            <select name="vadaszterulet" id="vadaszterulet" class="form-select">
+                <option value="">Mindegyik</option>
+                {% for vadaszterulet in vadaszteruletek %}
+                    <option value="{{ vadaszterulet.id }}" {% if vadaszterulet.id|stringformat:"s" == vadaszterulet_id %}selected{% endif %}>
+                        {{ vadaszterulet.vadaszterulet }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="datum" class="form-label">Dátum:</label>
+            <input type="date" name="datum" id="datum" value="{{ datum }}" class="form-control">
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Szűrés</button>
+        </div>
+    </form>
+
+    {% if foglalasok %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Teljes név</th>
+                        <th>Vadászterület</th>
+                        <th>Dátum</th>
+                        <th>Kezdési idő</th>
+                        <th>Befejezési idő</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for foglalas in foglalasok %}
+                        <tr>
+                            <td>{{ foglalas.teljes_nev }}</td>
+                            <td>{{ foglalas.vadaszterulet }}</td>
+                            <td>{{ foglalas.datum }}</td>
+                            <td>{{ foglalas.kezdesi_ido }}</td>
+                            <td>{{ foglalas.befejezesi_ido }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center text-muted">Nincsenek foglalások.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'foglalas' %}" class="btn btn-success">Új foglalás létrehozása</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

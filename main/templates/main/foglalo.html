@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <h1>Foglalás</h1>
+    <div class="foglalas">
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Foglalás" class="btn btn-secondary"/>
+        
+    </form>
+</div>
+</html>

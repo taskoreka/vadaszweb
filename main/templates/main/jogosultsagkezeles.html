@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogosultságkezelés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'foglalas.css' %}">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Jogosultságkezelés</h2>
+    <form method="POST" class="row g-3">
+        {% csrf_token %}
+        
+        <!-- Felhasználó kiválasztása -->
+        <div class="col-md-6">
+            <label for="user_id" class="form-label">Felhasználó:</label>
+            <select name="user_id" id="user_id" class="form-select" required>
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Csoport kiválasztása -->
+        <div class="col-md-6">
+            <label for="group_id" class="form-label">Csoport:</label>
+            <select name="group_id" id="group_id" class="form-select" required>
+                {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Művelet kiválasztása -->
+        <div class="col-md-12">
+            <label for="action" class="form-label">Művelet:</label>
+            <select name="action" id="action" class="form-select" required>
+                <option value="add">Hozzáadás a csoporthoz</option>
+                <option value="remove">Eltávolítás a csoportból</option>
+            </select>
+        </div>
+
+        <!-- Mentés gomb -->
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Mentés</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

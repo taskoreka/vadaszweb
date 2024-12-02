@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 0; 
+  }
+  
+  .header img {
+    width: 100%;
+    height: auto;
+    display: block; 
+  }
+  
+  .overlay-text {
+    position: absolute;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: "Brush Script MT", Brush Script Std, cursive;
+    font-size: 100px;
+    font-weight: bold; 
+  }
+  
+  .topnav {
+    height: 50px; 
+    line-height: 50px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    background-color: #030d9e;
+    padding: 10px;
+  }
+  
+  .topnav .nav-left a,
+  .topnav .nav-right a {
+    color: white;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .topnav .nav-left a:hover,
+  .topnav .nav-right a:hover {
+    color:#ffffff; 
+    background-color: #0a0157;
+  }
+  
+  .nav-left {
+    display: flex;
+  }
+  
+  .nav-right {
+    display: flex;
+  }

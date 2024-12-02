@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+        <head>
+        <title>{% block title %}Regisztráció{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'reg.css' %}">
+        </head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="register-container text-center col-md-4">
+            <h1>Regisztráció</h1>
+            <form method="POST" autocomplete="off" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {% if field.errors %}
+                    <div class="text-danger">{{ field.errors }}</div>
+                {% endif %}
+                <div class="form-group mb-3">
+                        
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Felhasználónév">
+                </div>
+                <div class="form-group mb-3">
+                    
+                    <input type="text" class="form-control" id="teljes_nev" name="teljes_nev" placeholder="Teljes név">
+                </div>
+                <div class="form-group mb-3">
+                        
+                    <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
+                </div>
+                <div class="form-group mb-3">
+                    
+                    <input type="text" class="form-control" id="vadaszjegyid" name="vadaszjegyid" placeholder="Vadászengedély szám">
+                </div>
+                <div class="form-group mb-3">
+                        
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Jelszó">
+                </div>
+                <div class="form-group mb-3">
+                    
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Jelszó mégegyszer">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Regisztrálok</button>
+            </form>
+        </div>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Főoldal</title>
+    <link rel="stylesheet" href="{% static 'hatosagdash.css' %}">
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'vadasz.jpg' %}" alt="Fejléc kép">
+        <div class="overlay-text">Online beírókönyv</div>
+    </div>
+    <div class="topnav">
+        <div class="nav-right">
+        <a href="{% url 'krotaliaatadas'%}">Krotália kiosztás</a>
+        <a href="{% url 'krotaliafel'%}">Krotália feltöltés</a>
+        </div>
+        <div class="nav-left">
+        <a href="{% url 'user-logout'%}">Kijelentkezés</a>
+        </div>
+    </div>
+
+</body>
+</html>

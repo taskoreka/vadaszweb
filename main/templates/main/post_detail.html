@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'foglalas.css' %}">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">{{ post.title }}</h1>
+    <div class="card mb-4">
+      <div class="card-body">
+        <p>{{ post.content }}</p>
+        {% if post.image %}
+          <img src="{{ post.image.url }}" alt="Post image" class="img-fluid">
+        {% endif %}
+        <p><strong>Szerző:</strong> {{ post.author }}</p>
+        <p><strong>Létrehozva:</strong> {{ post.created_at }}</p>
+      </div>
+    </div>
+    <h2 class="mb-3">Kommentek</h2>
+    <ul class="list-group mb-4">
+      {% for comment in post.comments.all %}
+        <li class="list-group-item">
+          <p>{{ comment.content }}</p>
+          {% if comment.image %}
+            <img src="{{ comment.image.url }}" alt="Comment image" class="img-fluid">
+          {% endif %}
+          <p><strong>{{ comment.author }}</strong> - {{ comment.created_at }}</p>
+        </li>
+      {% empty %}
+        <p>Nincsenek hozzászólások.</p>
+      {% endfor %}
+
+    </ul>
+
+    <h3 class="mb-4">Hozzászólás írása:</h3>
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.content }}
+      </div>
+      <div class="mb-3">
+        {{ form.image }}
+      </div>
+      <button type="submit" class="btn btn-primary">Komment küldése</button>
+    
+</form>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

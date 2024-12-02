@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <h1>Vadásztársaság regisztrálása</h1>
+    <div class="vadreg-form">
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Vadásztársaság regisztrálása" class="btn btn-secondary"/>
+        
+    </form>
+</div>
+</html>

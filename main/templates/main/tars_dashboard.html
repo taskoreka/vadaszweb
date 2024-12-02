@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    
+        <head>
+        <title>{% block title %}Főoldal{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        </head>
+    
+    <div class="header">
+        <img src="{% static 'vadasz.jpg' %}" alt="Fejléc kép">
+        <div class="overlay-text">Online beírókönyv</div>
+    </div>
+<div class="topnav">
+    <div class="nav-right">
+    <a href="{% url 'foglalas'%}">Foglalás</a>
+    <a href="{% url 'vadaszteruletek_list'%}">Vadászterületek</a>
+    <a href="{% url 'beiras_list'%}">Beírások</a>
+    <a href="{% url 'post_list'%}">Fórum</a>
+    <a href="{% url 'krotaliaatadas'%}">Nagyvadazonosító kiosztása</a>
+    
+    </div>
+    <div class="nav-left">
+    <a href="{% url 'user-logout'%}">Kijelentkezés</a>
+    </div>
+    
+<body>
+
+
+</body>
+
+</html>

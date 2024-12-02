@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+        <title>Lekérdezés</title>
+        </head>
+        </body>
+    <header>
+    <h1>Lekérdezés</h1>
+    </header>
+<h2>Keresés</h2>
+<form method="get">
+  {{ form.as_p }}
+  <button type="submit">Keresés</button>
+</form>
+
+<h2>Eredmények</h2>
+<ul>
+  {% for item in results %}
+    <li>{{ item.name }} - {{ item.number }} - {{ item.date }} - {{ item.choice }}</li>
+  {% empty %}
+    <li>Nincs találat.</li>
+  {% endfor %}
+</ul>
+    
+
+
+</html>

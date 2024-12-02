@@ -1,0 +1,16 @@
+
+body{
+    background-image: url(hattermalac.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+h1{
+    text-align: center;
+    color: #785747;
+    font-size: 100% ;
+    font-family: "Copperplate", fantasy;
+    opacity: 1;
+}
+

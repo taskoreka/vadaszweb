@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új poszt létrehozása</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'foglalas.css' %}">
+
+</head>
+<body>
+
+    <div class="container mt-5">
+        {% block content %}
+        <h1 class="mb-4 text-center">Új poszt létrehozása</h1>
+    
+        <!-- Form for creating new post -->
+        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                {{ form.title.label_tag }}  <!-- Mező címkéje -->
+                {{ form.title }}  <!-- Mező -->
+            </div>
+            <div class="mb-3">
+                {{ form.content.label_tag }}
+                {{ form.content }}
+            </div>
+            <div class="mb-3">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+    
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Mentés</button>
+                <a href="{% url 'post_list' %}" class="btn btn-secondary">Vissza a posztokhoz</a>
+            </div>
+        </form>
+        {% endblock %}
+    </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

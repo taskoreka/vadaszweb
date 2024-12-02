@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <h1>Foglalás</h1>
+<h2>{{ vadaszterulet.name }} naptára</h2>
+<table>
+    <tr>
+        <th>Dátum</th>
+        <th>Időpontok</th>
+    </tr>
+    {% for day in calendar_data %}
+        <tr>
+            <td>{{ day.date|date:"Y-m-d" }}</td>
+            <td>
+                {% for foglalas in day.foglalas %}
+                    <div>
+                        {{ foglalas.start_time|time:"H:i" }} - 
+                        {{ foglalas.end_time|time:"H:i" }} 
+                        {% if foglalas.is_booked %}
+                            (Foglalva)
+                        {% else %}
+                            (Szabad)
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    Nincsenek időpontok
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+</html>

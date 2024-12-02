@@ -1,0 +1,102 @@
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<head>
+    <title>{% block title %}Beírások Listája{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'foglalas.css' %}">
+</head>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-center text-primary">Beírások listája</h2>
+        </div>
+    </div>
+
+    
+    <form method="get" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label for="vadasz_neve" class="form-label">Vadász neve</label>
+                {{ filter_form.vadasz_neve|add_class:"form-control" }}
+            </div>
+            <div class="col-md-2">
+                <label for="datum_kezdete" class="form-label">Dátum kezdete</label>
+                {{ filter_form.datum_kezdete|add_class:"form-control" }}
+            </div>
+            <div class="col-md-2">
+                <label for="datum_vege" class="form-label">Dátum vége</label>
+                {{ filter_form.datum_vege|add_class:"form-control" }}
+            </div>
+            <div class="col-md-2">
+                <label for="vadfajta" class="form-label">Vadfajta</label>
+                {{ filter_form.vadfajta|add_class:"form-control" }}
+            </div>
+            <div class="col-md-2">
+                <label for="vadfele" class="form-label">Vadféle</label>
+                {{ filter_form.vadfele|add_class:"form-control" }}
+            </div>
+            <div class="col-md-2">
+                <label for="krotaliaszam" class="form-label">Krotália szám</label>
+                {{ filter_form.krotaliaszam|add_class:"form-control" }}
+            </div>
+            <div class="col-md-12 text-end mt-3">
+                <button type="submit" class="btn btn-primary">Szűrés</button>
+            </div>
+        </div>
+    </form>
+
+    
+    {% if total_darabszam is not None %}
+    <div class="alert alert-info text-center">
+        <strong>Összes darabszám a szűrt beírásokban:</strong> {{ total_darabszam }}
+    </div>
+    {% endif %}
+
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="table-primary">
+                <tr>
+                    <th>Vadász neve</th>
+                    <th>Dátum</th>
+                    <th>Időtartam</th>
+                    <th>Vadászat helye</th>
+                    <th>Vadfajta</th>
+                    <th>Vadféle</th>
+                    <th>Darabszám</th>
+                    <th>Nagyvadazonosító jel</th>
+                    <th>Megjegyzés</th>
+                    <th>Kép</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for beiras in beirasok %}
+                <tr>
+                    <td>{{ beiras.vadasz_neve }}</td>
+                    <td>{{ beiras.datum }}</td>
+                    <td>{{ beiras.kezdeti_ido }} - {{ beiras.vege_ido }}</td>
+                    <td>{{ beiras.vadaszat_helye }}</td>
+                    <td>{{ beiras.vadfajta }}</td>
+                    <td>{{ beiras.vadfele }}</td>
+                    <td>{{ beiras.darabszam }}</td>
+                    <td>{{ beiras.krotalia.nagyvadazonosito }}</td>
+                    <td>{{ beiras.megjegyzes }}</td>
+                    <td>
+                        {% if beiras.kep %}
+                        <img src="{{ beiras.kep.url }}" alt="Kép" class="img-fluid" style="max-width: 100px; max-height: 100px;">
+                        {% else %}
+                        <span class="text-muted">Nincs kép</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">Nincs elérhető beírás.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
